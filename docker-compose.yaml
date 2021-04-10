@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+      - ./config/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 60s
+      retries: 3
+    restart: always
+
+volumes:
+  postgres-db-volume:
