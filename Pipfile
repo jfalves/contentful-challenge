@@ -5,6 +5,7 @@ verify_ssl = true
 
 [packages]
 dbt = "*"
+luigi = "~=3.0"
 pre-commit = "~=2.0"
 
 [dev-packages]
