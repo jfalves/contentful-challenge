@@ -10,6 +10,6 @@
     )
 }}
 
-SELECT * FROM {{ ref('user_event') }} WHERE received_at::date = '{{ var("received_at") }}'
+SELECT * FROM {{ ref('user_event') }}
 
 {% endsnapshot %}
