@@ -43,7 +43,7 @@ class LoadOrg(LoadJsonBase):
     table = "staging.organization"
 
     def init_copy(self, connection):
-        query_truncate = f"truncate {self.table}"
+        query_truncate = f"delete from {self.table}"
         query_delete = f"""delete from table_updates
                             where target_table='{self.table}'"""
         cursor = connection.cursor()
