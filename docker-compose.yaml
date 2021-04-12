@@ -16,5 +16,10 @@ services:
       retries: 3
     restart: always
 
+  luigid-scheduler:
+    image: spotify/luigi:latest
+    ports:
+      - 8082:8082
+
 volumes:
   postgres-db-volume:
