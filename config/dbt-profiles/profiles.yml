@@ -1,0 +1,13 @@
+default:
+  outputs:
+    dev:
+      type: postgres
+      threads: 2
+      host: localhost
+      port: 5432
+      user: postgres
+      pass: postgres
+      dbname: datawarehouse
+      schema: ""
+
+  target: dev
