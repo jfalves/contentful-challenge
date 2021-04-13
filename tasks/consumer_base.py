@@ -11,6 +11,7 @@ class Consumer:
         self.queue_name = queue_name
         self.channel = channel
 
+        self.channel.queue_declare(queue=self.queue_name)
         self.channel.basic_consume(
             queue=self.queue_name, auto_ack=True, on_message_callback=self.callback
         )
