@@ -20,3 +20,14 @@ run-etl:
 	cd ${DBT_PROJECT_FOLDER} && dbt run --m historical
 	cd ${DBT_PROJECT_FOLDER} && dbt snapshot --vars '{"received_at": "${DATE}"}'
 	cd ${DBT_PROJECT_FOLDER} && dbt run --m dimensional
+
+clean:
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists dimensional.dim_organization;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists dimensional.dim_user;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists dimensional.dim_user_event;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists dimensional.fac_user;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists snapshots.user_snapshot;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "drop table if exists historical.user_event;"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "delete from staging."event";"
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "delete from staging.organization;";
+	docker exec contentful-challenge_database_1 psql -U postgres -d datawarehouse -c "delete from public.table_updates;";
